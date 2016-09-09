@@ -19,6 +19,7 @@ import {
   Image
 } from 'react-native';
 import Recorder from 'react-native-screcorder';
+import Camera from 'react-native-camera';
 import Video from 'react-native-video';
 import YouTube from 'react-native-youtube';
 import styles from './styles';
@@ -210,12 +211,12 @@ class Record extends Component {
       maxDuration: 10000,
       durationInSeconds: 0,
       limitReached: false,
-      config: {
-        flashMode: Recorder.constants.SCFlashModeOff,
-        video: {
-          enabled: true,
-          format: 'MPEG4'
-        }
+      camera: {
+        aspect: Camera.constants.Aspect.fill,
+        captureTarget: Camera.constants.CaptureTarget.cameraRoll,
+        type: Camera.constants.Type.back,
+        orientation: Camera.constants.Orientation.auto,
+        flashMode: Camera.constants.FlashMode.auto
       }
     };
     this.startBarAnimation = this.startBarAnimation.bind(this);
@@ -267,11 +268,15 @@ class Record extends Component {
   }
 
   record() {
+    const {navigator} = this.props;
+    this.camera.capture()
+      .then(data => {
+        this.reset();
+        navigator.push({component: Preview, props: {video: data.path}});
+      });
     if (this.state.limitReached) {
       return;
     }
-    this.refs.recorder.record();
-    this.startBarAnimation();
     this.setState({recording: true, activeRecording: true});
     var self = this;
     var interval = setInterval(function() {
@@ -279,6 +284,10 @@ class Record extends Component {
         clearInterval(interval);
       } else {
         self.setState({durationInSeconds: self.state.durationInSeconds + 1});
+        if (self.state.durationInSeconds === 10) {
+          clearInterval(interval);
+          self.preview();
+        }
       }
     }, 1000);
   }
@@ -300,7 +309,6 @@ class Record extends Component {
 
   reset() {
     this.resetBarAnimation();
-    this.refs.recorder.removeAllSegments();
     this.setState({
       recording: false,
       nbSegments: 0,
@@ -312,14 +320,12 @@ class Record extends Component {
 
   preview() {
     this.setState({activeRecording: false});
-    this.refs.recorder.pause();
+    this.camera.stopCapture();
     this.stopBarAnimation();
     const {navigator} = this.props;
-    this.refs.recorder.save((err, url) => {
-      this.reset();
-      console.log('url = ', url);
-      navigator.push({component: Preview, props: {video: url}});
-    });
+    /*this.refs.recorder.save((err, url) => {
+
+    });*/
   }
 
   setDevice() {
@@ -328,12 +334,23 @@ class Record extends Component {
   }
 
   toggleFlash() {
-    if (this.state.config.flashMode == Recorder.constants.SCFlashModeOff) {
-      this.state.config.flashMode = Recorder.constants.SCFlashModeLight;
-    } else {
-      this.state.config.flashMode = Recorder.constants.SCFlashModeOff;
+    let newFlashMode;
+    const { auto, on, off } = Camera.constants.FlashMode;
+
+    if (this.state.camera.flashMode === auto) {
+      newFlashMode = on;
+    } else if (this.state.camera.flashMode === on) {
+      newFlashMode = off;
+    } else if (this.state.camera.flashMode === off) {
+      newFlashMode = auto;
     }
-    this.setState({config: this.state.config});
+
+    this.setState({
+      camera: {
+        ...this.state.camera,
+        flashMode: newFlashMode
+      }
+    });
   }
 
   /*
@@ -371,11 +388,11 @@ class Record extends Component {
     var resetBtn = null;
 
     return (
-      <Recorder
-        ref="recorder"
-        config={this.state.config}
-        device={this.state.device}
-        onNewSegment={this.onNewSegment}
+      <Camera
+        captureMode={Camera.constants.CaptureMode.video}
+        ref={(cam) => {this.camera = cam;}}
+        aspect={Camera.constants.Aspect.fill}
+        flashMode={this.state.camera.flashMode}
         style={styles.wrapper}>
         {bar}
         <View style={styles.infoBtn}>
@@ -385,17 +402,11 @@ class Record extends Component {
           <TouchableOpacity onPressIn={this.record} onPressOut={this.preview} style={styles.controlBtn}>
             <Text>Record</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleFlash} style={styles.controlBtn}>
-            <Text>Flash</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.setDevice} style={styles.controlBtn}>
-            <Text>Switch</Text>
-          </TouchableOpacity>
           <TouchableOpacity onPress={this.exit} style={styles.controlBtn}>
             <Text>Exit</Text>
           </TouchableOpacity>
         </View>
-      </Recorder>
+      </Camera>
     );
   }
 }
@@ -416,15 +427,26 @@ class Preview extends Component {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={this.goBack}>
-        <Video
-          source={{uri: this.props.video}}
-          style={styles.wrapper}
-          muted={false}
-          resizeMode="cover"
-          paused={this.state.paused}
-          repeat={true}/>
-      </TouchableWithoutFeedback>
+      <View>
+        <TouchableOpacity onPress={this.goBack}>
+          <Video
+            source={{uri: this.props.video}}
+            style={styles.videoWrapper}
+            muted={false}
+            resizeMode="cover"
+            paused={this.state.paused}
+            repeat={true}>
+          </Video>
+        </TouchableOpacity>
+        <View style={styles.controls}>
+          <TouchableOpacity onPressIn={this.goBack} onPressOut={this.preview} style={styles.controlBtn}>
+            <Text>Submit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.goBack} style={styles.controlBtn}>
+            <Text>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 

@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
   loginImg: {
     width: window.width - 200
   },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: Dimensions.get('window').width,
+    width: Dimensions.get('window').width
+  },
   loginInput: {
     height: 60,
     borderColor: "#ddd",
@@ -34,7 +41,10 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1
   },
-
+  videoWrapper: {
+    height: screen.height,
+    width: screen.width
+  },
   barWrapper: {
     width: screen.width,
     height: 10,
