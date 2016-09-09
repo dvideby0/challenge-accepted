@@ -43,6 +43,7 @@ class YouTubeVideos extends Component {
   render() {
     const {videoId} = this.props;
     return (
+      <View>
       <YouTube
         ref="youtubePlayer"
         videoId={videoId} // The YouTube video ID
@@ -59,6 +60,10 @@ class YouTubeVideos extends Component {
 
         style={{alignSelf: 'stretch', height: 300, backgroundColor: 'powderblue', marginVertical: 10}}
       />
+      <TouchableHighlight style={styles.likeBtn} onPress={this.viewChallengeVideos}>
+        <Text>Like</Text>
+      </TouchableHighlight>
+      </View>
     );
   }
 }
@@ -150,10 +155,10 @@ class ViewChallenges extends Component {
           source={{uri: uri}}
         />
         <View style={styles.cardControls}>
-          <TouchableHighlight style={styles.controlBtn} onPress={this.viewChallengeVideos}>
-            <Text style={[{color: '#000'}]}>View Videos</Text>
+          <TouchableHighlight style={[styles.controlBtn]} onPress={this.viewChallengeVideos}>
+            <Text style={[{color: '#000'}]}>View Submissions</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.controlBtn} onPress={this.recordChallenge}>
+          <TouchableHighlight style={[styles.controlBtn, styles.controlBtnLast]} onPress={this.recordChallenge}>
             <Text style={[{color: '#000'}]}>Accept Challenge</Text>
           </TouchableHighlight>
         </View>
@@ -186,8 +191,8 @@ class ViewChallengeVideos extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: 'powderblue', padding: 10}}>
-        <TouchableOpacity onPressIn={this.props.navigator.pop} style={styles.controlBtn}>
+      <View style={styles.challengeVideos}>
+        <TouchableOpacity onPressIn={this.props.navigator.pop} style={styles.controlBtnBack}>
           <Text>Back</Text>
         </TouchableOpacity>
         <ScrollView>
