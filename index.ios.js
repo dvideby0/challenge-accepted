@@ -80,7 +80,7 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={{padding: 20, paddingTop: 40}}>
+      <View style={{padding: 20, paddingTop: 20}}>
         <TextInput
           style={{height: 40}}
           placeholder='username'
@@ -124,7 +124,7 @@ class ViewChallenges extends Component {
   }
 
   getChallenges() {
-    return fetch('http://localhost:9088')
+    return fetch('https://challenge-accepted-api.herokuapp.com/')
       .then((response) => response.json())
       .then(jsonResponse => jsonResponse)
       .catch((error) => {
