@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   wrapper: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'column'
   },
 
   barWrapper: {
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   cardControls: {
     position: 'absolute',
     bottom: 10,
-    width: screen.width,
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -73,12 +74,40 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 20,
     opacity: 0.8,
-    borderRadius: 5,
-    marginBottom: 10,
-    marginRight: 10,
-    width: 160
+    // borderRadius: 5,
+    // marginBottom: 10,
+    // marginRight: 10,
+    // width: 160,
+    flex: 0.5,
+    borderRightWidth: 1,
+    borderColor: "#000000",
+    justifyContent: 'center',
+    flexDirection: 'row'
   },
-
+  controlBtnLast: {
+    borderRightWidth: 0
+    //width: 160
+  },
+  controlBtnAccept: {
+    //width: 160
+  },
+  controlBtnBack: {
+    height: 50,
+    padding: 15,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#eee'
+  },
+  likeBtn: {
+    height: 50,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#00FFFF',
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    paddingTop: 15
+  },
   infoBtn: {
     backgroundColor: "#2ecc71",
     opacity: 0.8,
@@ -106,6 +135,10 @@ const styles = StyleSheet.create({
     height: 40,
     textAlign: 'center',
     fontSize: 20
+  },
+  challengeVideos: {
+    flex: 1, 
+    padding: 10
   }
 });
 
