@@ -81,17 +81,17 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={{padding: 20, paddingTop: 20}}>
-      <Image source={require('./assets/img/logo.png')} />
+      <View style={styles.login}>
+      <Image source={require('./assets/img/woo.gif')} style={styles.loginImg} />
         <TextInput
-          style={{height: 40}}
+          style={styles.loginInput}
           placeholder='username'
         />
         <TextInput
-          style={{height: 40}}
+          style={styles.loginInput}
           placeholder='password'
         />
-        <TouchableHighlight style={[styles.loginButton]} onPress={this.login}>
+        <TouchableHighlight style={[styles.loginBtn]} onPress={this.login}>
           <Text style={[{color: '#fff'}]}>Login</Text>
         </TouchableHighlight>
       </View>
@@ -141,11 +141,11 @@ class ViewChallenges extends Component {
   renderChallenge(challenge) {
     const uri = 'https://img.youtube.com/vi/' + challenge.youtube_id + '/3.jpg';
     return(
-      <View key={challenge.id} style={{backgroundColor: 'white', marginBottom: 15, paddingBottom: 10}}>
-        <Text style={{flex: 1, height: 40}}>
+      <View key={challenge.id} style={styles.challenge}>
+        <Text style={styles.challengeTitle}>
           {challenge.name}
         </Text>
-        <Image style={{height: 150}}
+        <Image style={{height: 200}}
           source={{uri: uri}}
         />
         <View style={styles.cardControls}>
