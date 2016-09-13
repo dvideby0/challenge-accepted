@@ -51,7 +51,7 @@ class ViewChallenges extends Component {
     return (
     <Card key={challenge.id} style={{marginBottom: 10}}>
       <CardItem>
-        <Text style={{fontSize: 15}}>{challenge.name}</Text>
+        <Text style={{fontSize: 20}}>{challenge.name}</Text>
       </CardItem>
 
       <CardItem cardBody>
