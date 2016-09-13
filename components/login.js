@@ -1,25 +1,8 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  DeviceEventEmitter,
-  ListView,
-  Navigator,
-  TouchableHighlight,
-  Dimensions,
-  Animated,
-  StatusBar,
-  CameraRoll,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Image
-} from 'react-native';
+import {Image, StatusBar} from 'react-native';
+import {Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup} from 'native-base';
 
 import styles from '../assets/styles/style';
 import ViewChallenges from './ViewChallenges';
@@ -43,20 +26,22 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={styles.login}>
-        <Image source={require('../assets/img/woo.gif')} style={styles.loginImg} />
-        <TextInput
-          style={styles.loginInput}
-          placeholder='username'
-        />
-        <TextInput
-          style={styles.loginInput}
-          placeholder='password'
-        />
-        <TouchableHighlight style={[styles.loginBtn]} onPress={this.login}>
-          <Text style={[{color: '#fff'}]}>Login</Text>
-        </TouchableHighlight>
-      </View>
+      <Container style={{backgroundColor: '#0099CC'}}>
+        <Header style={{backgroundColor: '#BBEAFA'}}>
+          <Title>Login</Title>
+        </Header>
+        <Content style={{padding: 20}}>
+          <StatusBar barStyle='default' />
+          <Image source={require('../assets/img/logo-login.png')} style={styles.loginImg}/>
+          <InputGroup style={{marginBottom: 10, backgroundColor: '#BBEAFA'}} borderType='regular'>
+            <Input placeholder='username'/>
+          </InputGroup>
+          <InputGroup style={{marginBottom: 10, backgroundColor: '#BBEAFA'}} borderType='regular'>
+            <Input placeholder='password'/>
+          </InputGroup>
+          <Button block warning onPress={this.login}>Login</Button>
+        </Content>
+      </Container>
     );
   }
 }

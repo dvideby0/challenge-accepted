@@ -6,7 +6,6 @@ import {
   Navigator
 } from 'react-native';
 import Login from './components/Login';
-import styles from './assets/styles/style';
 
 /*
  * Main app which houses navigator
@@ -33,7 +32,6 @@ class App extends Component {
   render() {
     return (
       <Navigator
-        style={[styles.nav]}
         title='Challenge Accepted'
         renderScene={this.renderScene}
         configureScene={(route) => {

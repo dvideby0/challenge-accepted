@@ -1,31 +1,11 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  DeviceEventEmitter,
-  ListView,
-  Navigator,
-  TouchableHighlight,
-  Dimensions,
-  Animated,
-  StatusBar,
-  CameraRoll,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Image
-} from 'react-native';
-
-import styles from '../assets/styles/style';
+import {Text, Navigator, Image} from 'react-native';
+import {Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Card, CardItem, Grid, Col} from 'native-base';
 import Recorder from './Recorder';
 import ViewChallengeVideos from './ViewChallengeVideos';
-
-const screen = Dimensions.get('window');
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class ViewChallenges extends Component {
   constructor(props) {
@@ -68,34 +48,37 @@ class ViewChallenges extends Component {
 
   renderChallenge(challenge) {
     const uri = 'https://img.youtube.com/vi/' + challenge.youtube_id + '/3.jpg';
-    return(
-      <View key={challenge.id} style={styles.challenge}>
-        <Text style={styles.challengeTitle}>
-          {challenge.name}
-        </Text>
-        <Image style={{height: 200}}
-               source={{uri: uri}}
-        />
-        <View style={styles.cardControls}>
-          <TouchableHighlight style={[styles.controlBtn]} onPress={this.viewChallengeVideos}>
-            <Text style={[{color: '#000'}]}>View Submissions</Text>
-          </TouchableHighlight>
-          <TouchableHighlight style={[styles.controlBtn, styles.controlBtnLast]} onPress={this.recordChallenge}>
-            <Text style={[{color: '#000'}]}>Accept Challenge</Text>
-          </TouchableHighlight>
-        </View>
-      </View>
+    return (
+    <Card key={challenge.id} style={{marginBottom: 10}}>
+      <CardItem>
+        <Text style={{fontSize: 15}}>{challenge.name}</Text>
+      </CardItem>
+
+      <CardItem cardBody>
+        <Image style={{resizeMode: 'cover', height: 200}} source={{uri: uri}} />
+      </CardItem>
+      <CardItem>
+        <Grid>
+          <Col style={{padding: 5}}><FontAwesome.Button name='thumbs-o-up'>Like</FontAwesome.Button></Col>
+          <Col style={{padding: 5}}><FontAwesome.Button backgroundColor='green' name='youtube-play' onPress={this.viewChallengeVideos}> Videos</FontAwesome.Button></Col>
+          <Col style={{padding: 5}}><FontAwesome.Button backgroundColor='red' name='video-camera' onPress={this.recordChallenge}> Accept</FontAwesome.Button></Col>
+        </Grid>
+      </CardItem>
+    </Card>
     );
   }
 
   render() {
 
     return (
-      <View style={{paddingTop: 40, backgroundColor: 'powderblue'}}>
-        <ScrollView style={{height: screen.height}}>
-          {this.state.challenges.map(challenge => this.renderChallenge(challenge))}
-        </ScrollView>
-      </View>
+    <Container style={{backgroundColor: '#0099CC'}}>
+      <Header style={{backgroundColor: '#BBEAFA'}}>
+        <Title>Challenges</Title>
+      </Header>
+      <Content style={{padding: 5}}>
+        {this.state.challenges.map(challenge => this.renderChallenge(challenge))}
+      </Content>
+    </Container>
     );
   }
 }

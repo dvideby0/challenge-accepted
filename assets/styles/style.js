@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   loginImg: {
-    width: window.width - 200
+    width: window.width - 200,
+    marginBottom: 20
   },
   preview: {
     flex: 1,
@@ -35,9 +36,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: window.width - 40
   },
-  nav: {
-    flex: 1
-  },
   wrapper: {
     flex: 1,
     flexDirection: 'column'
@@ -45,6 +43,11 @@ const styles = StyleSheet.create({
   videoWrapper: {
     height: screen.height,
     width: screen.width
+  },
+  backgroundImage: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null
   },
   barWrapper: {
     width: screen.width,

@@ -204,6 +204,7 @@ class Recorder extends Component {
 
   exit() {
     this.props.navigator.pop();
+    StatusBar.setHidden(false, 'slide');
   }
 
   render() {
