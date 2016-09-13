@@ -1,9 +1,9 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {Image, StatusBar} from 'react-native';
-import {Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup} from 'native-base';
-
+import {Image} from 'react-native';
+import {Text, Footer, Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Grid, Col} from 'native-base';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from '../assets/styles/style';
 import ViewChallenges from './ViewChallenges';
 
@@ -31,16 +31,18 @@ class Login extends Component {
           <Title>Login</Title>
         </Header>
         <Content style={{padding: 20}}>
-          <StatusBar barStyle='default' />
           <Image source={require('../assets/img/logo-login.png')} style={styles.loginImg}/>
-          <InputGroup style={{marginBottom: 10, backgroundColor: '#BBEAFA'}} borderType='regular'>
-            <Input placeholder='username'/>
-          </InputGroup>
-          <InputGroup style={{marginBottom: 10, backgroundColor: '#BBEAFA'}} borderType='regular'>
-            <Input placeholder='password'/>
-          </InputGroup>
-          <Button block warning onPress={this.login}>Login</Button>
+          <Grid style={{marginTop: 30, justifyContent: 'center'}}>
+            <Col style={{width: 220}}>
+              <FontAwesome.Button onPress={this.login} name='facebook' backgroundColor='#3b5998' style={{height: 50}}>
+                <Text style={{fontFamily: 'Arial', fontSize: 20, color: 'white'}}>Login with Facebook</Text>
+              </FontAwesome.Button>
+            </Col>
+          </Grid>
         </Content>
+        <Footer style={{backgroundColor: '#BBEAFA'}}>
+          <Text>YOLO Tech 2016</Text>
+        </Footer>
       </Container>
     );
   }

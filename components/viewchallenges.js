@@ -73,7 +73,9 @@ class ViewChallenges extends Component {
     return (
     <Container style={{backgroundColor: '#0099CC'}}>
       <Header style={{backgroundColor: '#BBEAFA'}}>
+        <Button transparent><FontAwesome name='user' size={25} /></Button>
         <Title>Challenges</Title>
+        <Button transparent onPress={this.props.navigator.pop}>Log Out</Button>
       </Header>
       <Content style={{padding: 5}}>
         {this.state.challenges.map(challenge => this.renderChallenge(challenge))}

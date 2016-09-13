@@ -1,27 +1,10 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  DeviceEventEmitter,
-  ListView,
-  Navigator,
-  TouchableHighlight,
-  Dimensions,
-  Animated,
-  StatusBar,
-  CameraRoll,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Image
-} from 'react-native';
-
+import {Navigator, Dimensions, Animated, StatusBar, CameraRoll, View} from 'react-native';
+import {Container, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col} from 'native-base';
 import Camera from 'react-native-camera';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from '../assets/styles/style';
 import Preview from './Preview';
 const screen = Dimensions.get('window');
@@ -223,13 +206,19 @@ class Recorder extends Component {
         <View style={styles.infoBtn}>
           <Text style={styles.infoBtnText}>{this.state.durationInSeconds}</Text>
         </View>
-        <View style={styles.controls}>
-          <TouchableOpacity onPressIn={this.record} onPressOut={this.preview} style={styles.controlBtn}>
-            <Text>Record</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.exit} style={styles.controlBtn}>
-            <Text>Exit</Text>
-          </TouchableOpacity>
+        <View>
+          <Grid style={{marginTop: screen.height - 150}}>
+            <Col style={{padding: 15}}>
+              <FontAwesome.Button backgroundColor='red' onPressIn={this.record} onPressOut={this.preview} name='video-camera'>
+                <Text>Record</Text>
+              </FontAwesome.Button>
+            </Col>
+            <Col style={{padding: 15}}>
+              <FontAwesome.Button backgroundColor='silver' onPress={this.exit} name='sign-out'>
+                <Text>Exit</Text>
+              </FontAwesome.Button>
+            </Col>
+          </Grid>
         </View>
       </Camera>
     );
