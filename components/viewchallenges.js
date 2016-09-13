@@ -1,8 +1,8 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {Text, Navigator, Image} from 'react-native';
-import {Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Card, CardItem, Grid, Col} from 'native-base';
+import {Navigator, Image} from 'react-native';
+import {Container, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col} from 'native-base';
 import Recorder from './Recorder';
 import ViewChallengeVideos from './ViewChallengeVideos';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
