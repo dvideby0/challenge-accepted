@@ -21,12 +21,12 @@ class ViewChallengeVideos extends Component {
   }
   render() {
     return (
-      <Container style={{backgroundColor: '#0099CC'}}>
-        <Header style={{backgroundColor: '#BBEAFA'}}>
-          <Button transparent onPress={this.goBack}><FontAwesome name='chevron-left' /> Back</Button>
-          <Title>Videos</Title>
+      <Container>
+        <Header style={{backgroundColor: '#3F88C5'}}>
+          <Button transparent onPress={this.goBack} textStyle={{color: 'white'}}><FontAwesome name='chevron-left' /> Back</Button>
+          <Title style={{color: 'white'}}>Videos</Title>
         </Header>
-        <Content>
+        <Content style={{padding: 0, backgroundColor: '#cccccc'}}>
           {this.state.challenges.map(challenge => <YouTubePlayer key={challenge.id} videoId={challenge.youtube_id}/>)}
         </Content>
       </Container>

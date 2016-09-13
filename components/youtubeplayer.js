@@ -24,8 +24,8 @@ class YouTubePlayer extends Component {
   render() {
     const {videoId} = this.props;
     return (
-      <Card style={{marginBottom: 10}}>
-        <CardItem cardBody>
+      <Card style={{marginBottom: 12, borderRadius: 0}}>
+        <CardItem cardBody style={{padding: 0, marginTop: -10}}>
           <YouTube
             ref="youtubePlayer"
             videoId={videoId} // The YouTube video ID
@@ -40,13 +40,11 @@ class YouTubePlayer extends Component {
             onError={(e)=>{this.setState({error: e.error})}}
             onProgress={(e)=>{this.setState({currentTime: e.currentTime, duration: e.duration})}}
 
-            style={{height: 200, backgroundColor: 'powderblue', marginVertical: 10}}
+            style={{height: 200}}
           />
-        </CardItem>
-        <CardItem>
           <Grid>
-            <Col style={{padding: 5}}><FontAwesome.Button name='thumbs-o-up'>Like</FontAwesome.Button></Col>
-            <Col style={{padding: 5}}><FontAwesome.Button backgroundColor='red' name='thumbs-o-down'>Dislike</FontAwesome.Button></Col>
+            <Col><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#4D9DE0' name='thumbs-o-up'>Like</FontAwesome.Button></Col>
+            <Col><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#D72638' name='thumbs-o-down'>Dislike</FontAwesome.Button></Col>
           </Grid>
         </CardItem>
       </Card>

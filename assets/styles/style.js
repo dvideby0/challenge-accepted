@@ -8,8 +8,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   loginImg: {
-    width: window.width - 200,
-    marginBottom: 20
+    height: 400,
+    resizeMode: 'contain',
+    alignItems:'center'
   },
   preview: {
     flex: 1,
