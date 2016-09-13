@@ -12,6 +12,7 @@
     "react-native-button": "^1.7.0",
     "react-native-gifted-spinner": "^0.1.0",
     "react-native-uploader": "0.0.9",
+    "react-native-vector-icons": "^2.1.0",
     "react-native-video": "^0.9.0",
     "react-native-youtube": "^0.7.2"
   }
