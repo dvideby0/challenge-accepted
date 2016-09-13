@@ -40,7 +40,7 @@ class YouTubePlayer extends Component {
             onError={(e)=>{this.setState({error: e.error})}}
             onProgress={(e)=>{this.setState({currentTime: e.currentTime, duration: e.duration})}}
 
-            style={{alignSelf: 'stretch', height: 300, backgroundColor: 'powderblue', marginVertical: 10}}
+            style={{height: 200, backgroundColor: 'powderblue', marginVertical: 10}}
           />
         </CardItem>
         <CardItem>
