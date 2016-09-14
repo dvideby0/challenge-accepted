@@ -12,10 +12,28 @@ class ViewChallengeVideos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      challenges: props.challenges
+      challenge: props.challenge,
+      videos: []
     };
     this.goBack = this.goBack.bind(this);
   }
+
+  getChallengeVideos(challengeId) {
+    return fetch('https://challenge-accepted-api.herokuapp.com/challenges/' + challengeId + '/videos')
+      .then((response) => response.json())
+      .then(jsonResponse => jsonResponse)
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  componentWillMount() {
+    this.getChallengeVideos(this.state.challenge._id).then(videos => {
+      console.log(videos);
+      this.setState({videos});
+    });
+  }
+
   goBack() {
     this.props.navigator.pop();
   }
@@ -24,10 +42,10 @@ class ViewChallengeVideos extends Component {
       <Container>
         <Header style={{backgroundColor: '#3F88C5'}}>
           <Button transparent onPress={this.goBack} textStyle={{color: 'white'}}><FontAwesome name='chevron-left' /> Back</Button>
-          <Title style={{color: 'white'}}>Videos</Title>
+          <Title style={{color: 'white'}}>{this.state.challenge.name}</Title>
         </Header>
         <Content style={{padding: 0, backgroundColor: '#cccccc'}}>
-          {this.state.challenges.map(challenge => <YouTubePlayer key={challenge.id} videoId={challenge.youtube_id}/>)}
+          {this.state.videos.map(video => <YouTubePlayer key={video._id} video={video} />)}
         </Content>
       </Container>
     );
