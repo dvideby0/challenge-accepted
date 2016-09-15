@@ -4,13 +4,13 @@ const screen = Dimensions.get('window');
 const styles = StyleSheet.create({
   login: {
     height: window.height,
-    backgroundColor: "#eee",
+    backgroundColor: '#eee',
     flex: 1
   },
   loginImg: {
     height: 400,
     resizeMode: 'contain',
-    alignItems:'center'
+    alignItems: 'center'
   },
   preview: {
     flex: 1,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   loginInput: {
     height: 60,
-    borderColor: "#ddd",
+    borderColor: '#ddd',
     borderWidth: 1,
     padding: 15
   },
@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
   barWrapper: {
     width: screen.width,
     height: 10,
-    backgroundColor: "black",
+    backgroundColor: 'black',
     opacity: 0.3
   },
 
   barGauge: {
     width: 0,
     height: 10,
-    backgroundColor: "red"
+    backgroundColor: 'red'
   },
 
   controls: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     bottom: 50,
     width: screen.width,
     flexDirection: 'row',
-    flexWrap: "wrap",
+    flexWrap: 'wrap',
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'transparent',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     opacity: 0.6
   },
   controlBtn: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 20,
     opacity: 0.8,
     // borderRadius: 5,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     // width: 160,
     flex: 0.5,
     borderRightWidth: 1,
-    borderColor: "#000000",
+    borderColor: '#000000',
     justifyContent: 'center',
     flexDirection: 'row'
   },
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     paddingTop: 15
   },
   infoBtn: {
-    backgroundColor: "#2ecc71",
+    backgroundColor: '#2ecc71',
     opacity: 0.8,
     padding: 10,
     position: 'absolute',
@@ -134,24 +134,24 @@ const styles = StyleSheet.create({
   },
 
   infoBtnText: {
-    color: "white"
+    color: 'white'
   },
 
   challenge: {
-    backgroundColor: 'white', 
+    backgroundColor: 'white',
     paddingBottom: 10,
     paddingTop: 10,
     paddingLeft: 20,
     paddingRight: 20
   },
   challengeTitle: {
-    flex: 1, 
+    flex: 1,
     height: 40,
     textAlign: 'center',
     fontSize: 20
   },
   challengeVideos: {
-    flex: 1, 
+    flex: 1,
     padding: 10
   }
 });
