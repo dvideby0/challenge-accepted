@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    height: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
     width: Dimensions.get('window').width
   },
   loginInput: {
