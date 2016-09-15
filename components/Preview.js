@@ -42,7 +42,7 @@ class Preview extends Component {
       let bytesTotal   = data.totalBytesExpectedToWrite;
       let progress     = data.progress;
 
-      console.log( "upload progress: " + progress + "%");
+      console.log( 'upload progress: ' + progress + '%');
     });
   }
 
@@ -69,7 +69,7 @@ class Preview extends Component {
       params: {'user_id': 1}
     };
 
-    RNUploader.upload( opts, (err, response) => {
+    RNUploader.upload(opts, (err, response) => {
       if( err ){
         console.log(err);
         return;
@@ -91,7 +91,7 @@ class Preview extends Component {
             source={{uri: this.props.video}}
             style={styles.videoWrapper}
             muted={false}
-            resizeMode="cover"
+            resizeMode='cover'
             paused={this.state.paused}
             repeat={true}>
           </Video>

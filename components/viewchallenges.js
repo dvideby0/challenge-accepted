@@ -91,7 +91,7 @@ class ViewChallenges extends Component {
           </Row>
           <Row style={{height: 40}}>
             <Col size={1} style={{alignItems: 'center', backgroundColor: '#4D9DE0'}}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#4D9DE0' name='thumbs-o-up'>Like</FontAwesome.Button></Col>
-            <Col size={2} style={{alignItems: 'center', backgroundColor: '#E1BC29'}}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#E1BC29' name='youtube-play' onPress={() => this.viewChallengeVideos(challenge)}> Videos</FontAwesome.Button></Col>
+            <Col size={2} style={{alignItems: 'center', backgroundColor: '#E1BC29'}} onPress={() => this.viewChallengeVideos(challenge)}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#E1BC29' name='youtube-play'> Videos</FontAwesome.Button></Col>
             <Col size={2} style={{alignItems: 'center', backgroundColor: '#D72638'}}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#D72638' name='video-camera' onPress={this.recordChallenge}> Accept</FontAwesome.Button></Col>
           </Row>
         </Grid>

@@ -88,10 +88,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     opacity: 0.8,
-    // borderRadius: 5,
-    // marginBottom: 10,
-    // marginRight: 10,
-    // width: 160,
     flex: 0.5,
     borderRightWidth: 1,
     borderColor: '#000000',
@@ -114,8 +110,6 @@ const styles = StyleSheet.create({
   },
   likeBtn: {
     height: 50,
-    justifyContent: 'center',
-    flexDirection: 'row',
     backgroundColor: '#00FFFF',
     flex: 1,
     justifyContent: 'center',
@@ -124,7 +118,6 @@ const styles = StyleSheet.create({
   },
   infoBtn: {
     backgroundColor: '#2ecc71',
-    opacity: 0.8,
     padding: 10,
     position: 'absolute',
     top: 20,
