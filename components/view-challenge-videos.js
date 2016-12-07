@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {Navigator, Image} from 'react-native';
 import {Container, Header, Title, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col} from 'native-base';
-import YouTubePlayer from './YouTubePlayer';
+import YouTubePlayer from './youtube-player';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 /*
  * View for rendering videos related to a challenge

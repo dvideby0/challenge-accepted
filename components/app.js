@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {AppRegistry, Navigator} from 'react-native';
-import Login from './Login';
+import Login from './login';
 
 /*
  * Main app which houses navigator

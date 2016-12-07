@@ -3,8 +3,8 @@
 import React, {Component} from 'react';
 import {Navigator, Image, Dimensions, View} from 'react-native';
 import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row} from 'native-base';
-import Recorder from './Recorder';
-import ViewChallengeVideos from './ViewChallengeVideos';
+import Recorder from './recorder';
+import ViewChallengeVideos from './view-challenge-videos';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const screen = Dimensions.get('window');
 
