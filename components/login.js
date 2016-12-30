@@ -27,24 +27,22 @@ class Login extends Component {
   render() {
     return (
       <Container style={{backgroundColor: '#140F2D'}}>
-        <Header style={{backgroundColor: '#3F88C5'}}>
-          <Title style={{color: 'white'}}>Login</Title>
-        </Header>
         <Content style={{padding: 20}}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle='light-content' />
           <View style={{alignItems: 'center'}}>
             <Image source={require('../assets/img/ChallengeAccepted.png')} style={styles.loginImg}/>
           </View>
           <Grid style={{marginTop: 30, justifyContent: 'center'}}>
             <Col style={{width: 220}}>
               <FontAwesome.Button onPress={this.login} name='facebook' backgroundColor='#3b5998' style={{height: 50}}>
-                <Text style={{fontFamily: 'Arial', fontSize: 20, color: 'white'}}>Login with Facebook</Text>
+                <Text style={{fontFamily: 'Arial', fontSize: 30, color: 'white'}}>| </Text>
+                <Text style={{fontFamily: 'Arial', fontSize: 17, color: 'white'}}>Login with Facebook</Text>
               </FontAwesome.Button>
             </Col>
           </Grid>
         </Content>
         <Footer style={{backgroundColor: '#3F88C5'}}>
-          <Text style={{color: '#140F2D'}}>YOLO Tech 2016</Text>
+          <Text style={{color: '#140F2D', fontSize: 20}}>MobyIO</Text>
         </Footer>
       </Container>
     );

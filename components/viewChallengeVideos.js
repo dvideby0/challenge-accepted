@@ -15,7 +15,6 @@ class ViewChallengeVideos extends Component {
       challenge: props.challenge,
       videos: []
     };
-    this.goBack = this.goBack.bind(this);
   }
 
   getChallengeVideos(challengeId) {
@@ -34,14 +33,11 @@ class ViewChallengeVideos extends Component {
     });
   }
 
-  goBack() {
-    this.props.navigator.pop();
-  }
   render() {
     return (
       <Container>
         <Header style={{backgroundColor: '#3F88C5'}}>
-          <Button transparent onPress={this.goBack} textStyle={{color: 'white'}}><FontAwesome name='chevron-left' /> Back</Button>
+          <Button transparent onPress={this.props.navigator.pop} textStyle={{color: 'white'}}><FontAwesome name='chevron-left' /> Back</Button>
           <Title style={{color: 'white'}}>{this.state.challenge.name}</Title>
         </Header>
         <Content style={{padding: 0, backgroundColor: '#cccccc'}}>

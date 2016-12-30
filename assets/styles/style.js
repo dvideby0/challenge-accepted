@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   loginImg: {
     height: 400,
+    marginTop: 30,
     resizeMode: 'contain',
     alignItems: 'center'
   },

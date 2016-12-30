@@ -5,6 +5,7 @@ import {Navigator, Image, Dimensions, View} from 'react-native';
 import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row} from 'native-base';
 import Recorder from './Recorder';
 import ViewChallengeVideos from './ViewChallengeVideos';
+import CreateChallenge from './CreateChallenge';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const screen = Dimensions.get('window');
 
@@ -16,6 +17,7 @@ class ViewChallenges extends Component {
     };
     this.viewChallengeVideos = this.viewChallengeVideos.bind(this);
     this.recordChallenge = this.recordChallenge.bind(this);
+    this.createChallenge = this.createChallenge.bind(this);
   }
 
   viewChallengeVideos(challenge) {
@@ -23,6 +25,14 @@ class ViewChallenges extends Component {
     navigator.push({
       component: ViewChallengeVideos,
       props: {challenge}
+    });
+  }
+
+  createChallenge() {
+    const {navigator} = this.props;
+    navigator.push({
+      component: CreateChallenge,
+      props: {}
     });
   }
 
@@ -91,7 +101,7 @@ class ViewChallenges extends Component {
           </Row>
           <Row style={{height: 40}}>
             <Col size={1} style={{alignItems: 'center', backgroundColor: '#4D9DE0'}}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#4D9DE0' name='thumbs-o-up'>Like</FontAwesome.Button></Col>
-            <Col size={2} style={{alignItems: 'center', backgroundColor: '#E1BC29'}} onPress={() => this.viewChallengeVideos(challenge)}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#E1BC29' name='youtube-play'> Videos</FontAwesome.Button></Col>
+            <Col size={2} style={{alignItems: 'center', backgroundColor: '#E1BC29'}}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#E1BC29' name='youtube-play' onPress={() => this.viewChallengeVideos(challenge)}> Videos</FontAwesome.Button></Col>
             <Col size={2} style={{alignItems: 'center', backgroundColor: '#D72638'}}><FontAwesome.Button style={{height: 40}} borderRadius={0} backgroundColor='#D72638' name='video-camera' onPress={this.recordChallenge}> Accept</FontAwesome.Button></Col>
           </Row>
         </Grid>
@@ -107,7 +117,7 @@ class ViewChallenges extends Component {
       <Header style={{backgroundColor: '#3F88C5'}}>
         <Button transparent onPress={this.props.navigator.pop}><FontAwesome style={{color: 'white'}} name='bars' size={25} /></Button>
         <Title style={{color: 'white'}}>Challenges</Title>
-        <Button transparent onPress={this.props.navigator.pop}><FontAwesome style={{color: 'white'}} name='plus' size={25} /></Button>
+        <Button transparent onPress={this.createChallenge}><FontAwesome style={{color: 'white'}} name='plus' size={25} /></Button>
       </Header>
       <Content style={{backgroundColor: '#cccccc'}}>
         {this.state.challenges.map(challenge => this.renderChallenge(challenge))}
