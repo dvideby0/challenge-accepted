@@ -29,19 +29,20 @@ class CreateChallenge extends Component {
           <Title style={{color: 'white'}}>New Challenge</Title>
         </Header>
         <Content style={{backgroundColor: '#ffffff'}}>
+          <Text style={{margin: 20}}>TODO: Instructions for creating a challenge. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
           <List>
             <ListItem style={{padding: 20}}>
               <InputGroup borderType='regular'>
-                <Input placeholder='Name' />
+                <Input placeholder='Name...' />
               </InputGroup>
             </ListItem>
             <ListItem style={{padding: 20}}>
               <InputGroup borderType='regular'>
-                <Input style={{height: 200}} multiline={true} placeholder='Description' />
+                <Input style={{height: 200}} multiline={true} placeholder='Description...' />
               </InputGroup>
             </ListItem>
           </List>
-          <Button block style={{alignSelf: 'center', marginTop: 20, marginBottom: 20}}>
+          <Button block style={{margin: 20}}>
             Create Challenge
           </Button>
         </Content>
