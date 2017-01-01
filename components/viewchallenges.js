@@ -6,6 +6,7 @@ import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, I
 import Recorder from './Recorder';
 import ViewChallengeVideos from './ViewChallengeVideos';
 import CreateChallenge from './CreateChallenge';
+import UserProfile from './UserProfile';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const screen = Dimensions.get('window');
 
@@ -19,6 +20,7 @@ class ViewChallenges extends Component {
     this.recordChallenge = this.recordChallenge.bind(this);
     this.createChallenge = this.createChallenge.bind(this);
     this.signOut = this.signOut.bind(this);
+    this.viewProfile = this.viewProfile.bind(this);
   }
 
   viewChallengeVideos(challenge) {
@@ -33,6 +35,14 @@ class ViewChallenges extends Component {
     const {navigator} = this.props;
     navigator.push({
       component: CreateChallenge,
+      props: {}
+    });
+  }
+
+  viewProfile() {
+    const {navigator} = this.props;
+    navigator.push({
+      component: UserProfile,
       props: {}
     });
   }
@@ -123,8 +133,9 @@ class ViewChallenges extends Component {
         <Button style={{height: 60, width: 60, borderRadius: 30, backgroundColor: '#4D9DE0'}} onPress={this.createChallenge}><FontAwesome style={{color: 'white'}} name='plus' size={25} /></Button>
       </View>
       <Header style={{backgroundColor: '#3F88C5'}}>
-        <Title style={{color: 'white'}}>Challenges</Title>
         <Button transparent onPress={this.signOut}><FontAwesome style={{color: 'white'}} name='sign-out' size={25} /></Button>
+        <Title style={{color: 'white'}}>Challenges</Title>
+        <Button transparent onPress={this.viewProfile}><FontAwesome style={{color: 'white'}} name='user' size={25} /></Button>
       </Header>
       <Content style={{backgroundColor: '#cccccc'}}>
         {this.state.challenges.map(challenge => this.renderChallenge(challenge))}
