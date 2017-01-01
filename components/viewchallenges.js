@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {Navigator, Image, Dimensions, View} from 'react-native';
-import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row} from 'native-base';
+import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row, Fab} from 'native-base';
 import Recorder from './Recorder';
 import ViewChallengeVideos from './ViewChallengeVideos';
 import CreateChallenge from './CreateChallenge';
@@ -18,6 +18,7 @@ class ViewChallenges extends Component {
     this.viewChallengeVideos = this.viewChallengeVideos.bind(this);
     this.recordChallenge = this.recordChallenge.bind(this);
     this.createChallenge = this.createChallenge.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   viewChallengeVideos(challenge) {
@@ -72,6 +73,11 @@ class ViewChallenges extends Component {
     }
   }
 
+  signOut() {
+    //TODO: actual sign out logic
+    this.props.navigator.pop();
+  }
+
   renderChallenge(challenge) {
     return (
     <Card key={challenge._id} style={{borderRadius: 0}}>
@@ -111,13 +117,14 @@ class ViewChallenges extends Component {
   }
 
   render() {
-
     return (
-    <Container>
+    <Container style={{flex: 1}}>
+      <View style={{position: 'absolute', bottom: 20, right: 20, zIndex: 100}}>
+        <Button style={{height: 60, width: 60, borderRadius: 30, backgroundColor: '#4D9DE0'}} onPress={this.createChallenge}><FontAwesome style={{color: 'white'}} name='plus' size={25} /></Button>
+      </View>
       <Header style={{backgroundColor: '#3F88C5'}}>
-        <Button transparent onPress={this.props.navigator.pop}><FontAwesome style={{color: 'white'}} name='bars' size={25} /></Button>
         <Title style={{color: 'white'}}>Challenges</Title>
-        <Button transparent onPress={this.createChallenge}><FontAwesome style={{color: 'white'}} name='plus' size={25} /></Button>
+        <Button transparent onPress={this.signOut}><FontAwesome style={{color: 'white'}} name='sign-out' size={25} /></Button>
       </Header>
       <Content style={{backgroundColor: '#cccccc'}}>
         {this.state.challenges.map(challenge => this.renderChallenge(challenge))}
