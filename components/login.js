@@ -1,9 +1,9 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+let {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import {Image, StatusBar, View} from 'react-native';
 import {Text, Footer, Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Grid, Col} from 'native-base';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from '../assets/styles/style';
 import ViewChallenges from './ViewChallenges';
 
@@ -25,6 +25,7 @@ class Login extends Component {
   }
 
   render() {
+    let _this = this;
     return (
       <Container style={{backgroundColor: '#140F2D'}}>
         <Content style={{padding: 20}}>
@@ -33,11 +34,41 @@ class Login extends Component {
             <Image source={require('../assets/img/ChallengeAccepted.png')} style={styles.loginImg}/>
           </View>
           <Grid style={{marginTop: 30, justifyContent: 'center'}}>
-            <Col style={{width: 220}}>
-              <FontAwesome.Button onPress={this.login} name='facebook' backgroundColor='#3b5998' style={{height: 50}}>
-                <Text style={{fontFamily: 'Arial', fontSize: 30, color: 'white'}}>| </Text>
-                <Text style={{fontFamily: 'Arial', fontSize: 17, color: 'white'}}>Login with Facebook</Text>
-              </FontAwesome.Button>
+            <Col style={{width: 220, alignItems: 'center'}}>
+              <FBLogin style={{marginBottom: 10}}
+                       ref={(fbLogin) => {this.fbLogin = fbLogin}}
+                       permissions={['email', 'user_friends']}
+                       loginBehavior={FBLoginManager.LoginBehaviors.Native}
+                       onLogin={function(data) {
+                         console.log('Logged in!');
+                         console.log(data);
+                         _this.setState({user: data.credentials});
+                       }}
+                       onLogout={function(){
+                         console.log('Logged out.');
+                         _this.setState({user: null});
+                       }}
+                       onLoginFound={function(data) {
+                         console.log('Existing login found.');
+                         console.log(data);
+                         _this.setState({user: data.credentials});
+                       }}
+                       onLoginNotFound={function() {
+                         console.log('No user logged in.');
+                         _this.setState({user: null});
+                       }}
+                       onError={function(data) {
+                         console.log('ERROR');
+                         console.log(data);
+                       }}
+                       onCancel={function() {
+                         console.log('User cancelled.');
+                       }}
+                       onPermissionsMissing={function(data) {
+                         console.log('Check permissions!');
+                         console.log(data);
+                       }}
+              />
             </Col>
           </Grid>
         </Content>
