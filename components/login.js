@@ -43,6 +43,7 @@ class Login extends Component {
                          console.log('Logged in!');
                          console.log(data);
                          _this.setState({user: data.credentials});
+                         _this.login();
                        }}
                        onLogout={function(){
                          console.log('Logged out.');
@@ -52,6 +53,7 @@ class Login extends Component {
                          console.log('Existing login found.');
                          console.log(data);
                          _this.setState({user: data.credentials});
+                         _this.login();
                        }}
                        onLoginNotFound={function() {
                          console.log('No user logged in.');
