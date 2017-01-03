@@ -4,8 +4,8 @@ import React, {Component} from 'react';
 import {Navigator, Image, Dimensions, View} from 'react-native';
 import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row, Fab, Tabs} from 'native-base';
 import ViewPopularChallenges from './ViewPopularChallenges';
-import ViewNewChallenges from './ViewPopularChallenges';
-import ViewFavoriteChallenges from './ViewPopularChallenges';
+import ViewNewChallenges from './ViewNewChallenges';
+import ViewFavoriteChallenges from './ViewFavoriteChallenges';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CreateChallenge from './CreateChallenge';
 
@@ -39,7 +39,7 @@ class ViewChallenges extends Component {
 
   render() {
     return (
-    <Container style={{flex: 1}}>
+    <Container>
       <View style={{position: 'absolute', bottom: 20, right: 20, zIndex: 100}}>
         <Button style={{height: 60, width: 60, borderRadius: 30, backgroundColor: '#4D9DE0'}} onPress={this.createChallenge}><FontAwesome style={{color: 'white'}} name='plus' size={25} /></Button>
       </View>

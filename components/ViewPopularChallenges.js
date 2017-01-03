@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {Navigator, Image, Dimensions, View} from 'react-native';
-import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row, Fab} from 'native-base';
+import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row, Fab, Spinner} from 'native-base';
 import Recorder from './Recorder';
 import ViewChallengeVideos from './ViewChallengeVideos';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -12,7 +12,8 @@ class ViewPopularChallenges extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      challenges: []
+      challenges: [],
+      loading: true
     };
     this.viewChallengeVideos = this.viewChallengeVideos.bind(this);
     this.recordChallenge = this.recordChallenge.bind(this);
@@ -20,9 +21,9 @@ class ViewPopularChallenges extends Component {
 
   componentWillMount() {
     let self = this;
+    this.setState({loading: true});
     this.getChallenges().then(challenges => {
-      console.log(self.props.user);
-      this.setState({challenges});
+      this.setState({challenges, loading: false});
     });
   }
 
@@ -65,7 +66,7 @@ class ViewPopularChallenges extends Component {
 
   renderChallenge(challenge) {
     return (
-      <Card key={challenge._id} style={{borderRadius: 0}}>
+      <Card key={challenge._id} style={{borderRadius: 0, marginTop: 0}}>
         <CardItem cardBody style={{padding: 0}}>
           <Grid>
             <Row style={{height: 300}}>
@@ -105,6 +106,7 @@ class ViewPopularChallenges extends Component {
     return (
       <Container>
         <Content style={{backgroundColor: '#cccccc'}}>
+          {this.state.loading ? <View style={{alignItems: 'center'}} ><Spinner color='blue'/></View> : null}
           {this.state.challenges.map(challenge => this.renderChallenge(challenge))}
         </Content>
       </Container>
