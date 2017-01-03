@@ -16,11 +16,11 @@ class Login extends Component {
     this.login = this.login.bind(this);
   }
 
-  login() {
+  login(user) {
     const {navigator} = this.props;
     navigator.push({
       component: ViewChallenges,
-      props: {}
+      props: {user: user}
     });
   }
 
@@ -40,10 +40,9 @@ class Login extends Component {
                        permissions={['email', 'user_friends']}
                        loginBehavior={FBLoginManager.LoginBehaviors.Native}
                        onLogin={function(data) {
-                         console.log('Logged in!');
                          console.log(data);
                          _this.setState({user: data.credentials});
-                         _this.login();
+                         _this.login(data.credentials);
                        }}
                        onLogout={function(){
                          console.log('Logged out.');
@@ -53,7 +52,7 @@ class Login extends Component {
                          console.log('Existing login found.');
                          console.log(data);
                          _this.setState({user: data.credentials});
-                         _this.login();
+                         _this.login(data.credentials);
                        }}
                        onLoginNotFound={function() {
                          console.log('No user logged in.');
