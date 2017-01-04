@@ -3,11 +3,11 @@
 import React, {Component} from 'react';
 import {Navigator, Image, Dimensions, View} from 'react-native';
 import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row, Fab, Tabs} from 'native-base';
-import ViewPopularChallenges from './ViewPopularChallenges';
-import ViewNewChallenges from './ViewNewChallenges';
-import ViewFavoriteChallenges from './ViewFavoriteChallenges';
+import ViewPopularChallenges from './view_popular_challenges';
+import ViewNewChallenges from './view_new_challenges';
+import ViewFavoriteChallenges from './view_favorite_challenges';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import CreateChallenge from './CreateChallenge';
+import CreateChallenge from './create_challenge';
 
 class ViewChallenges extends Component {
   constructor(props) {

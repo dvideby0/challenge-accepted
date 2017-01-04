@@ -6,7 +6,7 @@ import {Container, Header, Title, Text, Content, Button, TextInput, Icon, Card, 
 import Camera from 'react-native-camera';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from '../assets/styles/style';
-import Preview from './Preview';
+import Preview from './preview';
 const screen = Dimensions.get('window');
 
 class Recorder extends Component {

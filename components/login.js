@@ -5,7 +5,7 @@ let {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import {Image, StatusBar, View} from 'react-native';
 import {Text, Footer, Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Grid, Col} from 'native-base';
 import styles from '../assets/styles/style';
-import ViewChallenges from './ViewChallenges';
+import ViewChallenges from './view_challenges';
 
 /*
  * This is the initial view for user's to login
