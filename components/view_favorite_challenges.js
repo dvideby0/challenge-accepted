@@ -79,7 +79,7 @@ class ViewFavoriteChallenges extends Component {
               <Col style={{width: 100, padding: 5}}>
                 <Row style={{height: 30}}>
                   <Col>
-                    <Thumbnail size={70} source={{uri: challenge.created_by.profile_picture}} />
+                    <Thumbnail size={70} source={{uri: `https://graph.facebook.com/${challenge.created_by.facebook_id}/picture?type=large`}} />
                   </Col>
                 </Row>
               </Col>
