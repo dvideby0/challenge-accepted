@@ -5,8 +5,13 @@ let {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import {Image, StatusBar, View} from 'react-native';
 import {Text, Footer, Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Grid, Col} from 'native-base';
 import styles from '../assets/styles/style';
+const FBSDK = require('react-native-fbsdk');
+const {
+  GraphRequest,
+  GraphRequestManager,
+} = FBSDK;
 import ViewChallenges from './view_challenges';
-
+import * as config from './config';
 /*
  * This is the initial view for user's to login
  */
@@ -18,10 +23,52 @@ class Login extends Component {
 
   login(user) {
     const {navigator} = this.props;
-    navigator.push({
-      component: ViewChallenges,
-      props: {user: user}
-    });
+    /*
+     { tokenExpirationDate: '2017-03-11T22:10:16-05:00',
+     permissions: [ 'email', 'public_profile', 'user_friends' ],
+     userId: '10208672890363068',
+     token: 'EAATheZBzxfFgBALrbxyd2XdgpAMhZCIDXRkeFkje1aP3QmgcWQ6Sqt1fvsZB2IyRqiNBI9AQQ65ZBktFF22a4TMVp6ZBYpPo2f5q19TAQZCSpeZAHrrfZCCQoMKwR4dHmZCviSekXLf2DxkU9T31U6wFCjQB6ZCF2hRIRuwZA8wMjBxXeQnCGhpDyW1kRpgeaylOZBoZD' }
+     */
+    // Create a graph request asking for user information with a callback to handle the response.
+    const infoRequest = new GraphRequest(
+      '/me',
+      {
+        parameters: {
+          fields: {
+            string: 'email,name' // what you want to get
+          }
+        }
+      },
+      function(err, response) {
+        console.log('EMAIL: ', response.email);
+        if (err) {
+          alert(err);
+        } else {
+          fetch(config.API_URL + '/login', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: response.name,
+              facebook_id: response.id,
+              email: response.email
+            })
+          })
+            .then((response) => response.json())
+            .then(jsonResponse => {
+              navigator.push({
+                component: ViewChallenges,
+                props: {user: jsonResponse}
+              });
+            })
+            .catch(console.log);
+        }
+      }
+    );
+
+    new GraphRequestManager().addRequest(infoRequest).start();
   }
 
   render() {
@@ -40,7 +87,6 @@ class Login extends Component {
                        permissions={['email', 'user_friends']}
                        loginBehavior={FBLoginManager.LoginBehaviors.Native}
                        onLogin={function(data) {
-                         console.log(data);
                          _this.setState({user: data.credentials});
                          _this.login(data.credentials);
                        }}

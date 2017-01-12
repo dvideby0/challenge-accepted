@@ -7,6 +7,7 @@ import Recorder from './recorder';
 import ViewChallengeVideos from './view_challenge_videos';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const screen = Dimensions.get('window');
+import * as config from './config';
 
 class ViewFavoriteChallenges extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class ViewFavoriteChallenges extends Component {
   }
 
   getChallenges() {
-    return fetch('https://challenge-accepted-api.herokuapp.com/challenges')
+    return fetch(config.API_URL + '/challenges')
       .then((response) => response.json())
       .then(jsonResponse => jsonResponse)
       .catch((error) => {

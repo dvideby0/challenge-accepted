@@ -17,18 +17,18 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleURLTypes</key>
-      <array>
-        <dict>
-          <key>CFBundleURLSchemes</key>
-            <array>
-              <string>fb1373822279318616</string>
-            </array>
-        </dict>
-      </array>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb1373822279318616</string>
+        </array>
+      </dict>
+    </array>
     <key>FacebookAppID</key>
-      <string>1373822279318616</string>
+    <string>1373822279318616</string>
     <key>FacebookDisplayName</key>
-      <string>Challenge Accepted</string>
+    <string>Challenge Accepted</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleSignature</key>
@@ -36,12 +36,12 @@
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>LSApplicationQueriesSchemes</key>
-      <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-      </array>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-api</string>
+      <string>fbauth2</string>
+      <string>fbshareextension</string>
+    </array>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>UILaunchStoryboardName</key>

@@ -33,7 +33,7 @@ class ViewChallenges extends Component {
     const {navigator} = this.props;
     navigator.push({
       component: CreateChallenge,
-      props: {}
+      props: {user: this.props.user}
     });
   }
 

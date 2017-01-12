@@ -21,6 +21,7 @@ import {
   Image
 } from 'react-native';
 
+import * as config from './config';
 import styles from '../assets/styles/style';
 import Video from 'react-native-video';
 let RNUploader = require('NativeModules').RNUploader;
@@ -62,7 +63,7 @@ class Preview extends Component {
     ];
 
     let opts = {
-      url: 'https://challenge-accepted-api.herokuapp.com/media',
+      url: config.API_URL + '/media',
       files: files,
       method: 'POST',                             // optional: POST or PUT
       headers: {'Accept': 'application/json'},  // optional

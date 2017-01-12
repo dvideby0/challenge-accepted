@@ -5,6 +5,8 @@ import {Navigator, Image} from 'react-native';
 import {Container, Header, Title, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col} from 'native-base';
 import YouTubePlayer from './you_tube_player';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import * as config from './config';
+
 /*
  * View for rendering videos related to a challenge
  */
@@ -18,7 +20,7 @@ class ViewChallengeVideos extends Component {
   }
 
   getChallengeVideos(challengeId) {
-    return fetch('https://challenge-accepted-api.herokuapp.com/challenges/' + challengeId + '/videos')
+    return fetch(config.API_URL + '/challenges/' + challengeId + '/videos')
       .then((response) => response.json())
       .then(jsonResponse => jsonResponse)
       .catch((error) => {
