@@ -5,17 +5,37 @@ import {Navigator, Image, Dimensions, View} from 'react-native';
 import {Container, Thumbnail, Header, Title, Text, Content, Button, TextInput, Icon, Card, CardItem, Grid, Col, Row, InputGroup, List, ListItem, Picker, Input} from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const screen = Dimensions.get('window');
+import * as config from './config';
 
 class CreateChallenge extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      challenges: []
+      challenge_name: '',
+      challenge_description: ''
     };
+    this.createChallenge = this.createChallenge.bind(this);
   }
 
   componentWillMount() {
 
+  }
+
+  createChallenge(event) {
+    fetch(config.API_URL + '/challenges', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: this.state.challenge_name,
+        description: this.state.challenge_description,
+        created_by: this.props.user._id
+      })
+    })
+      .then(this.props.navigator.pop)
+      .catch(console.log);
   }
 
   render() {
@@ -31,16 +51,16 @@ class CreateChallenge extends Component {
           <List>
             <ListItem style={{padding: 20}}>
               <InputGroup borderType='regular'>
-                <Input placeholder='Name...' />
+                <Input placeholder='Name...' onChangeText={(text) => this.setState({challenge_name: text})} value={this.state.challenge_name} />
               </InputGroup>
             </ListItem>
             <ListItem style={{padding: 20}}>
               <InputGroup borderType='regular'>
-                <Input style={{height: 200}} multiline={true} placeholder='Description...' />
+                <Input style={{height: 200}} multiline={true} placeholder='Description...' onChangeText={(text) => this.setState({challenge_description: text})} value={this.state.challenge_description} />
               </InputGroup>
             </ListItem>
           </List>
-          <Button block style={{margin: 20}}>
+          <Button block style={{margin: 20}} onPress={this.createChallenge}>
             Create Challenge
           </Button>
         </Content>
