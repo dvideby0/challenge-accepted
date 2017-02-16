@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {Navigator} from 'react-native';
 import {Container, Header, Title, Content, Button, Icon, Card, CardItem, Grid, Row, Col, Thumbnail, Text} from 'native-base';
-import YouTube from 'react-native-youtube';
+import YouTube from 'react-native-youtube-fork';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 /*

@@ -1,7 +1,6 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-let {FBLogin, FBLoginManager} = require('react-native-facebook-login');
 import {Image, StatusBar, View} from 'react-native';
 import {Text, Footer, Container, Header, Title, Content, Button, TextInput, Icon, Input, InputGroup, Grid, Col} from 'native-base';
 import styles from '../assets/styles/style';
@@ -9,6 +8,9 @@ const FBSDK = require('react-native-fbsdk');
 const {
   GraphRequest,
   GraphRequestManager,
+  LoginButton,
+  AccessToken,
+  LoginManager
 } = FBSDK;
 import ViewChallenges from './view_challenges';
 import * as config from './config';
@@ -21,7 +23,7 @@ class Login extends Component {
     this.login = this.login.bind(this);
   }
 
-  login(user) {
+  login() {
     const {navigator} = this.props;
     /*
      { tokenExpirationDate: '2017-03-11T22:10:16-05:00',
@@ -40,7 +42,7 @@ class Login extends Component {
         }
       },
       function(err, response) {
-        console.log('EMAIL: ', response.email);
+        console.log('RESPONSE: ', JSON.stringify(response));
         if (err) {
           alert(err);
         } else {
@@ -82,40 +84,20 @@ class Login extends Component {
           </View>
           <Grid style={{marginTop: 30, justifyContent: 'center'}}>
             <Col style={{width: 220, alignItems: 'center'}}>
-              <FBLogin style={{marginBottom: 10}}
-                       ref={(fbLogin) => {this.fbLogin = fbLogin}}
-                       permissions={['email', 'user_friends']}
-                       loginBehavior={FBLoginManager.LoginBehaviors.Native}
-                       onLogin={function(data) {
-                         _this.setState({user: data.credentials});
-                         _this.login(data.credentials);
-                       }}
-                       onLogout={function(){
-                         console.log('Logged out.');
-                         _this.setState({user: null});
-                       }}
-                       onLoginFound={function(data) {
-                         console.log('Existing login found.');
-                         console.log(data);
-                         _this.setState({user: data.credentials});
-                         _this.login(data.credentials);
-                       }}
-                       onLoginNotFound={function() {
-                         console.log('No user logged in.');
-                         _this.setState({user: null});
-                       }}
-                       onError={function(data) {
-                         console.log('ERROR');
-                         console.log(data);
-                       }}
-                       onCancel={function() {
-                         console.log('User cancelled.');
-                       }}
-                       onPermissionsMissing={function(data) {
-                         console.log('Check permissions!');
-                         console.log(data);
-                       }}
-              />
+              <LoginButton
+                permissions={['email', 'user_friends']}
+                onLoginFinished={
+                  (error, result) => {
+                    if (error) {
+                      alert('Login Error: ' + result.error);
+                    } else if (result.isCancelled) {
+                      alert('You must login');
+                    } else {
+                      _this.login();
+                    }
+                  }
+                }
+                onLogoutFinished={() => _this.setState({user: null})}/>
             </Col>
           </Grid>
         </Content>

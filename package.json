@@ -3,20 +3,26 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "dependencies": {
-    "native-base": "^0.5.20",
-    "react": "^15.4.2",
-    "react-native": "^0.39.2",
-    "react-native-button": "^1.7.0",
-    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
-    "react-native-facebook-login": "^1.4.0",
-    "react-native-fbsdk": "^0.4.0",
-    "react-native-gifted-spinner": "^0.1.0",
-    "react-native-uploader": "0.0.9",
-    "react-native-vector-icons": "^2.1.0",
-    "react-native-video": "^0.9.0",
-    "react-native-youtube": "^0.7.2"
+    "native-base": "^2.0.7",
+    "react": "~15.4.0",
+    "react-native": "0.41.2",
+    "react-native-camera": "^0.6.0",
+    "react-native-fbsdk": "^0.5.0",
+    "react-native-vector-icons": "~4.0.0",
+    "react-native-video": "^1.0.0",
+    "react-native-youtube-fork": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-jest": "18.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "18.1.0",
+    "react-test-renderer": "~15.4.0"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
